@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>Search Form</title>
+	</head>
+	<body>
+		<h2>Search Form</h2>
+		<div>
+			<form th:action="@{/searchbyid}" method="post">
+				<label>Enter Id:</label>
+				<input type="number" name="id">
+				<button type="submit">Search</button>					
+				</div>
+				
+				<div th:if="${product !null}">
+					<h3>Product Details</h3>
+					<p><strong>ID:</strong><span th:text="${product.id}"></span></p>
+					
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+package com.sathya.springmvc.test1;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.sathya.springmvc.employeemodel.EmployeeModel;
+import com.sathya.springmvc.entity.EmployeeEntity;
+import com.sathya.springmvc.service.EmployeeService;
+
+
+@Controller
+public class Testcontroller {
+@Autowired
+EmployeeService employeeService;
+@GetMapping("/Employeeform")
+public String getEmployee()
+{
+	return "add-employee";
+}
+@PostMapping("/saveEmployee")
+public String saveEmployee(EmployeeModel employeeModel)
+{
+	System.out.println(employeeModel);
+	return "success1";
+}
+@GetMapping("/getAllEmployees")
+public String getAllEmployees(Model model)
+{
+	List<EmployeeEntity> employees= employeeService.getAllEmployees();
+	model.addAttribute("employees", employees);
+	return "employee-list";
+}
+
+
+}

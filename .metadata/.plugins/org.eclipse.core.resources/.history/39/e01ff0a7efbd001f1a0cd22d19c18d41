@@ -1,0 +1,22 @@
+package com.sathya.springmvc.test;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.sathya.springmvc.productModel.ProductModel;
+
+@Service
+public class Testcontroller {
+@GetMapping("/Productform")	
+public String getProduct()
+{
+	return "add-Product";
+}
+@PostMapping("/saveProduct")
+public String saveProduct(ProductModel productModel)
+{
+	System.out.println(productModel);
+	return "success";
+}
+}

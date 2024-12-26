@@ -1,0 +1,5 @@
+package com.sathya.springmvc.employeemodel;
+
+public class EmployeeModel {
+
+}

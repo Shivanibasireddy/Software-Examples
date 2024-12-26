@@ -1,0 +1,145 @@
+<html>
+	<head>
+		<title>Product form</title>
+		<style> 
+			/* General body styles */
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f4f4f4;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			/* Form container styling */
+			form {
+				background-color: #fff;
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				width: 100%;
+				max-width: 600px;
+			}
+
+			/* Heading styling */
+			h1 {
+				text-align: center;
+				color: #333;
+				font-size: 2rem;
+				margin-bottom: 20px;
+			}
+
+			/* Label styling */
+			label {
+				font-size: 1rem;
+				font-weight: bold;
+				margin-bottom: 5px;
+				display: block;
+				color: #333;
+			}
+
+			/* Input styling */
+			input[type="text"],
+			input[type="number"] {
+				width: 100%;
+				padding: 10px;
+				margin-bottom: 15px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				font-size: 1rem;
+			}
+
+			/* Focus effect on input fields */
+			input[type="text"]:focus,
+			input[type="number"]:focus {
+				border-color: #4CAF50;
+				outline: none;
+			}
+
+			/* Error message styling */
+			.error {
+				color: chocolate;
+				font-size: 0.9rem;
+				margin-top: -10px;
+				margin-bottom: 10px;
+			}
+
+			/* Button styling */
+			button[type="submit"],
+			button[type="reset"] {
+				background-color: #4CAF50;
+				color: white;
+				padding: 12px;
+				border: none;
+				border-radius: 4px;
+				font-size: 1rem;
+				cursor: pointer;
+				margin-top: 10px;
+				width: 48%;
+				display: inline-block;
+				text-align: center;
+			}
+
+			/* Hover effect for buttons */
+			button[type="submit"]:hover,
+			button[type="reset"]:hover {
+				background-color: #45a049;
+			}
+
+			/* Reset button specific styling */
+			button[type="reset"] {
+				background-color: #f44336;
+			}
+
+			/* Reset button hover effect */
+			button[type="reset"]:hover {
+				background-color: #e53935;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Product Form</h1>
+		<form th:action="@{/saveProduct}" th:object="${productModel}" method="post">
+				        <label>Name:</label>
+				        <input type="text" id="name" name="name" th:value="*{name}"/>
+						<p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p><br/><br/>
+
+				        <label>Brand:</label>
+				        <input type="text"  name="brand" th:value="*{brand}"/>
+						<p class="error" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></p><br/><br/>
+
+						
+				        <label>Price:</label>
+				        <input type="number" name="price" th:value="*{price}"/>
+						<p class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p><br/><br/>
+
+
+				        <label>Made In:</label>
+				        <input type="text" name="madeIn" th:value="*{madeIn}"/>
+						<p class="error" th:if="${#fields.hasErrors('madeIn')}" th:errors="*{madeIn}"></p><br/><br/>
+
+
+				        <label>Quantity:</label>
+				        <input type="number" name="quantity" th:value="*{quantity}"/>
+						<p class="error" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></p><br/><br/>
+
+				        
+						<label>Discount Rate:</label>
+						<input type="number" name="discountRate" th:value="*{discountRate}"/>
+						<p class="error" th:if="${#fields.hasErrors('discountRate')}" th:errors="*{discountRate}"></p><br/><br/>
+
+				        
+						<label>Tax Price:</label>
+						<input type="number" name="taxPrice" th:value="*{taxPrice}"/>
+						<p class="error" th:if="${#fields.hasErrors('taxPrice')}" th:errors="*{taxPrice}"></p><br/><br/>
+
+
+				        <button type="submit">Save Product</button>
+						<button type="reset">Reset</button>
+
+		</form>
+	</body>
+</html>

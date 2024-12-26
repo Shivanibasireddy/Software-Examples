@@ -1,0 +1,27 @@
+package com.sathya.springmvc.test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.sathya.springmvc.productModel.ProductModel;
+import com.sathya.springmvc.service.Productservice;
+
+@Controller
+public class Testcontroller {
+@Autowired
+Productservice productservice;
+@GetMapping("/Productform")	
+public String getProduct()
+{
+	return "add-Product";
+}
+@PostMapping("/saveProduct")
+public String saveProduct(ProductModel productModel)
+{
+	productservice.saveProductDetails( productModel)
+	System.out.println(productModel);
+	return "success";
+}
+}

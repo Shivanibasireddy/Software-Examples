@@ -1,0 +1,27 @@
+package com.sathya.springmvc.productModel;
+
+import org.springframework.data.annotation.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductModel {
+	@Id
+	 long id;
+	 String name;
+	 String madeIn;
+	 double price;
+	 String brand;
+	 int quantity;
+	 int discount;
+	 double taxRate;
+	 double discountPrice;
+	 double offerPrice;
+	 double stockValue;
+	 double finalPrice;
+	 
+
+}

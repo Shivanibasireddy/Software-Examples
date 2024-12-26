@@ -1,0 +1,78 @@
+package com.sathya.springmvc.test;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.sathya.springmvc.entity.ProductEntity;
+import com.sathya.springmvc.productModel.ProductModel;
+import com.sathya.springmvc.service.Productservice;
+
+@Controller
+public class Testcontroller {
+	@Autowired
+	Productservice productservice;
+	@GetMapping("/Productform")	
+	public String getProduct()
+	{
+		return "add-product";
+	}
+	@PostMapping("/saveProduct")
+	public String saveProduct(ProductModel productModel)
+	{
+		productservice.saveProductDetails(productModel);
+		return "success";
+	}
+	@GetMapping("/getallproducts")
+	public String getAllProducts(Model model)
+	{
+		List<ProductEntity> products= productservice.getAllProducts();
+		model.addAttribute("products", products);
+		return "product-list";
+	}
+	//Search Product by id
+	@GetMapping("/getsearchform")
+	public String getsearchForm()
+	{
+		return "searchform";
+	}
+	@PostMapping("/searchbyid")
+	public String searchById(@RequestParam Long id,Model model)
+  	{
+		ProductEntity product = productservice.searchById(id);
+		model.addAttribute("product", product);
+		return "searchform";
+  	}
+	//delete operation
+	@GetMapping("/delete/{id}")
+	public String deleteProductById(@PathVariable Long id)
+	{
+		productservice.deleteProductById(id);
+		return "redirect:/getallproducts";
+	}
+	//edit operation
+	
+	@GetMapping("/edit/{id}")
+	public String getEditForm(@PathVariable Long id, Model model) {
+	    ProductEntity product = productservice.searchById(id);  
+	    model.addAttribute("product", product);  
+	    model.addAttribute("id", id);
+	    return "updateform";  
+	}
+
+
+	@PostMapping("/editproductsave/{id}")
+	public String updateProduct(@PathVariable Long id,ProductModel productModel) {
+	    productservice.updateProduct(productModel, id);  
+	    return "redirect:/getallproducts";  
+	}
+	
+
+	
+}

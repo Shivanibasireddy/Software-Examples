@@ -1,0 +1,8 @@
+package com.sathya.springmvc.entity;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class Product_Entity {
+
+}

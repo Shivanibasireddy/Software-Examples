@@ -1,0 +1,40 @@
+package com.sathya.springmvc.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sathya.springmvc.employeemodel.EmployeeModel;
+import com.sathya.springmvc.entity.EmployeeEntity;
+import com.sathya.springmvc.repository.EmployeeRepository;
+
+@Service
+public class EmployeeService {
+	@Autowired
+	EmployeeRepository employeeRepository;
+	public void saveEmployeeDetails(EmployeeModel  employeeModel)
+	{
+		double grossSalary;
+		grossSalary=salary+hra+bonus;
+		
+		double totalSalary;
+		totalSalary=grossSalary-pf;
+		
+		
+		EmployeeEntity employeeEntity= new EmployeeEntity();
+		employeeEntity.setId(employeeModel.getId());
+		employeeEntity.setSalary(employeeModel.getSalary());
+		employeeEntity.setAge(employeeModel.getAge());
+		employeeEntity.setGender(employeeModel.getGender());
+		employeeEntity.setDepartment(employeeModel.getDepartment());
+		employeeEntity.setExperience(employeeModel.getExperience());
+		employeeEntity.setDa(employeeModel.getDa());
+		employeeEntity.setHra(employeeModel.getHra());
+		employeeEntity.setPf(employeeModel.getPf());
+		employeeEntity.setBonus(employeeModel.getBonus());
+		employeeEntity.setGrossSalary(grossSalary);
+		employeeEntity.setTotalSalary(totalSalary);
+		
+		employeeRepository.save(employeeEntity);
+	}
+
+}

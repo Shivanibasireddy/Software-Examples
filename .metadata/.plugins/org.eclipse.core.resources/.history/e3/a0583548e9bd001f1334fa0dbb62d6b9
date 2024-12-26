@@ -1,0 +1,5 @@
+package com.sathya.springmvc.entity;
+
+public class Product_Entity {
+
+}
